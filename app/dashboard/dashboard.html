@@ -1,11 +1,11 @@
 <div class="row" style="padding-top:5px;">
 	<div class="col-md-4">
 	<div class="card">
-		<div class="card-body">Total Hosts: 12</div>
+		<div class="card-body">Total Hosts: {{total_host}}</div>
 	</div>
 	</div>
 
-	<div class="col-md-4">
+	<!-- <div class="col-md-4">
 	<div class="card">
 		<div class="card-body">Total RAM: 48</div>
 	</div>
@@ -13,43 +13,45 @@
 
 	<div class="col-md-4">
 	<div class="card">
-		<div class="card-body">Total Cores: 24</div>
+		<div class="card-body">Total Cores: 2aq4</div>
 	</div>
-	</div>
+	</div> -->
 </div>
 
 <div class="row" style="padding-top:15px;">
-	<div class="col-md-6">Hosts
-		<div class="list-group">
-	    <a href="#" class="list-group-item active">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	    <a href="#" class="list-group-item">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	    <a href="#" class="list-group-item">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	  </div>
-	</div> 
+	<div class="col-md-6">
+	<div ng-repeat="cpu in cpu_info" class="card">
+		<div class="card-header">{{cpu.hostname}}</div>
 
-	<div class="col-md-6">Process in host asdasd.asdsad.abc.net
-		<div class="list-group">
-	    <a href="#" class="list-group-item">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	    <a href="#" class="list-group-item">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	    <a href="#" class="list-group-item">
-	      <h6 class="list-group-item-heading">asdasd.asdsad.abc.net</h6>
-	      <p class="list-group-item-text">CPU: 2 Core, Ram: 1GB</p>
-	    </a>
-	  </div>
+		<div class="card-body">
+		
+		  <p class="list-group-item-text">Host running from: {{cpu.data.cpu.uptime_epoch * 1000 | date:'dd-MMM-yy, HH:mm:ss a (Z)'}}</p>
+		  <p class="list-group-item-text">Running Process: {{cpu.data.cpu.running_process}}</p>
+	      <p class="list-group-item-text">Running Threads: {{cpu.data.cpu.process_threads}}</p>
+	      <p class="list-group-item-text">Total Memory: {{cpu.data.memory.MemTotal}}</p>
+	      <p class="list-group-item-text">Free Memory: {{cpu.data.memory.MemFree}}</p>
+	      <p class="list-group-item-text">Available Memory: {{cpu.data.memory.MemAvailable}}</p>
+	      <p class="list-group-item-text">Cores: {{cpu.data.cpu.cpu.length}}</p>
+	      <div class="card" ng-repeat="(key,cp) in cpu.data.cpu.cpu" ng-if="key!='cpu-1'">
+	      	<div class="card-header">{{key}}</div>
+	      	<div class="card-body">
+	      	System Process:{{cp.system_process}}</br>
+	      	Idle Process:{{cp.idle}}</br>
+	      	User Process:{{cp.user_process}}</br>
+	      	IO Waiting Process:{{cp.io_wait}}</br>
+	      	Niced Process:{{cp.niced_process}}</br>
+	      	</div>
+	      </div>
+	      <div class="card" >
+	      	<div class="card-header">Memory Info</div>
+	      	<div class="card-body" >
+	      	<table>
+	      		<tr ng-repeat="(key,cp) in cpu.data.memory" ng-if="key!='id' &&key!='hostname'&&key!='datetime' && key!='type'"><td>{{key}}:</td><td>{{cp}}</td></tr>
+	      	</table>
+	      	
+	      	</div>
+	      </div>
+	     </div>
 	</div> 
+	</div>
 </div>
