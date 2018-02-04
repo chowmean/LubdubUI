@@ -19,21 +19,21 @@
 </div>
 
 <div class="row" style="padding-top:15px;">
-	<div class="col-md-6">
-	<div ng-repeat="cpu in cpu_info" class="card">
-		<div class="card-header">{{cpu.hostname}}</div>
+	<div ng-repeat="cpu in cpu_info" class="col-md-6">
+	<div class="card">
+		<div class="card-header"><b>{{cpu.hostname}}</b></div>
 
 		<div class="card-body">
 		
 		  <p class="list-group-item-text">Host running from: {{cpu.data.cpu.uptime_epoch * 1000 | date:'dd-MMM-yy, HH:mm:ss a (Z)'}}</p>
-		  <p class="list-group-item-text">Running Process: {{cpu.data.cpu.running_process}}</p>
-	      <p class="list-group-item-text">Running Threads: {{cpu.data.cpu.process_threads}}</p>
-	      <p class="list-group-item-text">Total Memory: {{cpu.data.memory.MemTotal}}</p>
-	      <p class="list-group-item-text">Free Memory: {{cpu.data.memory.MemFree}}</p>
-	      <p class="list-group-item-text">Available Memory: {{cpu.data.memory.MemAvailable}}</p>
+		  <p class="list-group-item-text"><b>Running Process:</b> {{cpu.data.cpu.running_process}}</p>
+	      <p class="list-group-item-text"><b>Running Threads:</b> {{cpu.data.cpu.process_threads}}</p>
+	      <p class="list-group-item-text"><b>Total Memory:</b> {{cpu.data.memory.MemTotal}}</p>
+	      <p class="list-group-item-text"><b>Free Memory:</b>: {{cpu.data.memory.MemFree}}</p>
+	      <p class="list-group-item-text"><b>Available Memory:</b> {{cpu.data.memory.MemAvailable}}</p>
 	      <p class="list-group-item-text">Cores: {{cpu.data.cpu.cpu.length}}</p>
 	      <div class="card" ng-repeat="(key,cp) in cpu.data.cpu.cpu" ng-if="key!='cpu-1'">
-	      	<div class="card-header">{{key}}</div>
+	      	<div class="card-header"><b>{{key}}</b></div>
 	      	<div class="card-body">
 	      	System Process:{{cp.system_process}}</br>
 	      	Idle Process:{{cp.idle}}</br>
