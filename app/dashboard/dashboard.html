@@ -1,21 +1,23 @@
 <div class="row" style="padding-top:5px;">
 	<div class="col-md-4">
 	<div class="card">
-		<div class="card-body">Total Hosts: {{total_host}}</div>
-	</div>
-	</div>
-
-	<!-- <div class="col-md-4">
-	<div class="card">
-		<div class="card-body">Total RAM: 48</div>
+		<div class="card-body"><h3>Total Hosts: {{total_host}}</h3></div>
 	</div>
 	</div>
 
 	<div class="col-md-4">
-	<div class="card">
-		<div class="card-body">Total Cores: 2aq4</div>
+	<div class="card text-white bg-success mb-3">
+		<div class="card-body"><h3>Total Active: {{active_host}}</h3></div>
 	</div>
-	</div> -->
+	</div>
+
+	<div class="col-md-4">
+	<div class="card text-white bg-danger mb-3">
+		<div class="card-body"><h3>Total Inactive: {{total_host - active_host}}</h3></div>
+	</div>
+	</div>
+
+	
 </div>
 
 <div class="row" style="padding-top:15px;">
@@ -48,7 +50,17 @@
 	      	<div class="card-header">Memory Info</div>
 	      	<div class="card-body" >
 	      	<table>
-	      		<tr ng-repeat="(key,cp) in cpu.data.memory" ng-if="key!='id' &&key!='hostname'&&key!='datetime' && key!='type'"><td>{{key}}:</td><td>{{cp}}</td></tr>
+	      		<tr ng-repeat="(key,cp) in cpu.data.memory" ng-if="key!='id' &&key!='hostname'&&key!='datetime' && key!='type'"><td>{{key| uppercase}}:</td><td>{{cp}}</td></tr>
+	      	</table>
+	      	
+	      	</div>
+	      </div>
+
+	      <div class="card" >
+	      	<div class="card-header">CPU Info</div>
+	      	<div class="card-body" >
+	      	<table>
+	      		<tr ng-repeat="(key,cp) in cpu.data.cpu_info" ng-if="key!='id' &&key!='hostname'&&key!='datetime' && key!='type'"><td>{{key| uppercase}}:</td><td>{{cp}}</td></tr>
 	      	</table>
 	      	
 	      	</div>

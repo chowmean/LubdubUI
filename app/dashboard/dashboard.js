@@ -14,6 +14,7 @@ angular.module('myApp.dashboard', ['ngRoute'])
     $scope.cpu_info = {}
     $scope.cpu_memory = {}
     $scope.total_host = 0
+    $scope.active_host = 0
     $http({
             method: 'GET',
             url: $scope.url + "cpu_info"
@@ -26,6 +27,7 @@ angular.module('myApp.dashboard', ['ngRoute'])
 				var diff = b.diff(a, 'seconds');
 				if (diff-19800<120){
 					value['active'] = true;
+					$scope.active_host = $scope.active_host + 1
 				}
 				else{
 					value['active'] = false;
